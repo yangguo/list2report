@@ -2,3 +2,4 @@ python-docx
 plotly
 pandas
 openpyxl
+kaleido
