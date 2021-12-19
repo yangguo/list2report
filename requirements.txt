@@ -1,3 +1,4 @@
 python-docx
 plotly
 pandas
+openpyxl
