@@ -7,7 +7,11 @@ from checkreport import doctable,download_svg_link,download_word_link
 
 def main():
 
+<<<<<<< HEAD
     st.subheader("Convert Table to Word")
+=======
+    st.subheader("发现清单转文档")
+>>>>>>> 434dccd700d6304f61f096fa0ab5bc7b16ab003b
     # upload excel file
     file = st.file_uploader("选择文件", type=["xlsx"])
     if file is not None:
