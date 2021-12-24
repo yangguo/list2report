@@ -10,16 +10,16 @@ def doctable(df, title, hcols, fcols):
         
     # df fillna
     df = df.fillna('')
-    tb=df.groupby(hcols,sort=False).size().reset_index(name='总数')
+    tb=df.groupby(hcols,sort=False).size().reset_index(name='Sum')
     # create picture
-    fig = px.pie(tb, values='总数', names='一级流程', title='问题汇总')
+    fig = px.pie(tb, values='Sum', names='Section', title='Graph')
     fig.update_traces(textposition='inside', textinfo='label+value+percent')
 
     df3=df.groupby(hcols)[fcols].agg(list).reset_index()
     document = Document()
     document.add_heading(title, 0)
 
-    document.add_heading('问题汇总', 1)
+    document.add_heading('Table', 1)
     
     table = document.add_table(tb.shape[0]+1, tb.shape[1])
 
@@ -32,10 +32,10 @@ def doctable(df, title, hcols, fcols):
             table.cell(i+1,j).text = str(tb.values[i,j])
     
     document.add_paragraph()
-    document.add_paragraph('问题总数：'+str(len(df)))
+    document.add_paragraph('Total: '+str(len(df)))
    
     document.add_page_break()
-    document.add_heading('问题清单', 1)
+    document.add_heading('Listing', 1)
     
     count = 1
     for index, row in df3.iterrows():
@@ -45,7 +45,7 @@ def doctable(df, title, hcols, fcols):
         lastlv = 2
         item_num = len(row[fcols[0]])
         for j in range(item_num):
-            document.add_heading('问题' + str(count), lastlv+1)
+            document.add_heading('No: ' + str(count), lastlv+1)
             count += 1
             for k, colm in enumerate(fcols):
                 document.add_heading(colm, lastlv+2)
