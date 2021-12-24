@@ -12,7 +12,7 @@ def doctable(df, title, hcols, fcols):
     df = df.fillna('')
     tb=df.groupby(hcols,sort=False).size().reset_index(name='Sum')
     # create picture
-    fig = px.pie(tb, values='Sum', names='Section', title='Graph')
+    fig = px.pie(tb, values='Sum', names=hcols[0], title='Graph')
     fig.update_traces(textposition='inside', textinfo='label+value+percent')
 
     df3=df.groupby(hcols)[fcols].agg(list).reset_index()
